@@ -1,7 +1,7 @@
 version: "2"
 services:
   app:
-    container_name: graphqlapp
+    container_name: app
     restart: always
     build: .
     ports:
@@ -9,7 +9,7 @@ services:
     links:
       - mongo
   mongo:
-    container_name: graphqlmongo
+    container_name: mongo
     image: mongo
     volumes:
       - ./data:/data/db
