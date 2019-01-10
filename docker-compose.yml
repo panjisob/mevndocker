@@ -11,9 +11,11 @@ services:
     container_name: mongo
     image: mongo
     volumes:
-      - ./data:/data/db
+      - data-volume:/data/db
     ports:
       - "27017:27017"
+  volumes:
+    data-volume:
   admin-mongo:
     image: 0x59/admin-mongo:latest
     ports:
