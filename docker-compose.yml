@@ -1,21 +1,19 @@
 version: "2"
 services:
   app:
-    container_name: app
+    container_name: appvue
     build: .
     ports:
       - "4000:4000"
     links:
       - mongo
   mongo:
-    container_name: mongo
+    container_name: mongodb
     image: mongo
     volumes:
-      - data-volume:/data/db
+      - /data/mongodb/db:/data/db
     ports:
       - "27017:27017"
-  volumes:
-    data-volume:
   admin-mongo:
     image: 0x59/admin-mongo:latest
     ports:
