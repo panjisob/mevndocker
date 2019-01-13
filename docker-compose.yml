@@ -7,6 +7,9 @@ services:
       - "4000:4000"
     links:
       - mongo
+    networks:
+      myNetwork:
+        ipv4_address: 172.16.99.9
   mongo:
     container_name: mongodb
     image: mongo
@@ -14,6 +17,9 @@ services:
       - /data/mongodb/db:/data/db
     ports:
       - "27017:27017"
+    networks:
+      myNetwork:
+        ipv4_address: 172.16.99.10
   admin-mongo:
     image: 0x59/admin-mongo:latest
     ports:
@@ -24,3 +30,13 @@ services:
       - DB_HOST=mongo
     links:
       - mongo
+    networks:
+      myNetwork:
+        ipv4_address: 172.16.99.11
+networks:
+  myNetwork:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.99.0/24
